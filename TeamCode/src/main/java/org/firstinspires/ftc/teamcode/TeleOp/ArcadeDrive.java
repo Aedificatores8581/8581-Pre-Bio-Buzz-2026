@@ -2,45 +2,44 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import org.firstinspires.ftc.teamcode.mechanisms.MainConfig;
 
-@TeleOp(name = "ArcadeDrive", group = "TESTS")
+@TeleOp(name = "ArcadeDrive", group = "Drives")
 public class ArcadeDrive extends OpMode{
 
-
-
-
-
-  static  double frontLeftMotor;
-  static   double frontRightMotor;
-  static   double backLeftMotor;
-  static   double backRightMotor;
-
-  static double power;
-
-  static double turn;
+    public MainConfig config = new MainConfig();
 
     @Override
     public void init() {
 
-        //Would be motor declaration bellow so this is an example
-
+        config.init(hardwareMap);
 
     }
 
     @Override
     public void loop() {
 
-        power = gamepad1.left_stick_y;
-        turn = gamepad1.right_stick_x;
+        driveForward(gamepad1.left_stick_y);
 
-        //motors would be assigned to power and I would need to have an if statement that would change the motor power to turn based on if turn was negative or positive
+    }
 
-        if(turn > 0){
-            //Set motors to turn right with a power of turn
-        }
-        else if(turn < 0){
-            //Set motors to turn left power to negative turn
-        }
+    public void driveForward(double speed){
+
+
+ //   if(gamepad1.left_stick_y < 0) {
+        config.frontLeft.setPower(speed);
+        config.frontRight.setPower(speed);
+        config.backLeft.setPower(speed);
+        config.backRight.setPower(speed);
+
+ /*   else if (gamepad1.left_stick_y > 0){
+        config.frontLeft.setPower(speed * 0.5);
+        config.frontRight.setPower(speed * 0.5);
+        config.backLeft.setPower(speed * 0.5);
+        config.backRight.setPower(speed * 0.5);
+        */
+
+
 
     }
 }
