@@ -7,23 +7,23 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class MainConfig {
 
     public DigitalChannel distanceSensor; //Variable def
-    public DcMotor frontLeft;
-    public DcMotor frontRight;
-    public DcMotor backLeft;
-    public DcMotor backRight;
+    public DcMotor FrontLeft;
+    public DcMotor FrontRight;
+    public DcMotor BackLeft;
+    public DcMotor BackRight;
     public void init(HardwareMap hwMap) { //init methode that adds a hwMap
 
     //This is the declaration of the variables, assigns to the type and its name in the config
   //  distanceSensor = hwMap.get(DigitalChannel.class, "Device_Name"); //declares it under the Digital Channel type, and with the set name
  //   distanceSensor.setMode(DigitalChannel.Mode.INPUT); //A Digital Channel type
-    frontLeft = hwMap.get(DcMotor.class, "frontLeft");
-    frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    frontRight = hwMap.get(DcMotor.class, "frontRight");
-    frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    backLeft = hwMap.get(DcMotor.class, "backLeft");
-    backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-    backRight = hwMap.get(DcMotor.class, "backRight");
-    backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    FrontLeft = hwMap.get(DcMotor.class, "FrontLeft");
+    FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    FrontRight = hwMap.get(DcMotor.class, "FrontRight");
+    FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    BackLeft = hwMap.get(DcMotor.class, "BackLeft");
+    BackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    BackRight = hwMap.get(DcMotor.class, "BackRight");
+    BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
   /*  public boolean distanceSensorTest(){
@@ -32,7 +32,7 @@ public class MainConfig {
 
     public void runMotor(double speed){
 
-        frontLeft.setPower(speed);
+        FrontLeft.setPower(speed);
     }
 
     }

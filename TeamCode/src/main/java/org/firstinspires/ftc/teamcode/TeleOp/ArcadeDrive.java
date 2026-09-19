@@ -27,10 +27,10 @@ public class ArcadeDrive extends OpMode{
 
 
  //   if(gamepad1.left_stick_y < 0) {
-        config.frontLeft.setPower(speed);
-        config.frontRight.setPower(speed);
-        config.backLeft.setPower(speed);
-        config.backRight.setPower(speed);
+        config.FrontLeft.setPower(speed);
+        config.FrontRight.setPower(speed);
+        config.BackLeft.setPower(speed);
+        config.BackRight.setPower(speed);
 
  /*   else if (gamepad1.left_stick_y > 0){
         config.frontLeft.setPower(speed * 0.5);
