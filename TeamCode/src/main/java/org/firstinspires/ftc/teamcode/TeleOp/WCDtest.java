@@ -25,6 +25,9 @@ public class WCDtest extends OpMode {
         else if (gamepad1.right_stick_x < 0){
             turn = -1;
         }
+        else {
+            turn = 0;
+        }
         speed = gamepad1.left_stick_y;
 
         runMotor();
@@ -33,6 +36,7 @@ public class WCDtest extends OpMode {
         telemetry.addData("FrontRightPOW", config.FrontRight.getPower());
         telemetry.addData("BackLeftPOW", config.BackLeft.getPower());
         telemetry.addData("BackRightPOW", config.BackRight.getPower());
+        telemetry.addData("turn", turn);
 
     }
 
@@ -40,15 +44,15 @@ public class WCDtest extends OpMode {
         if (turn != 0){
             if(turn > 0){
                 config.FrontLeft.setPower(speed * turn);
-                config.FrontRight.setPower(speed * turn * -1);
-                config.BackLeft.setPower(speed * turn * -1); //flips
-                config.BackRight.setPower(speed * turn); //flips
+                config.FrontRight.setPower(speed * turn);
+                config.BackLeft.setPower(speed * turn);
+                config.BackRight.setPower(speed * turn);
             }
             else if (turn < 0){
-                config.FrontLeft.setPower(speed * turn * -1); //flips
-                config.FrontRight.setPower(speed * turn); //flips
+                config.FrontLeft.setPower(speed * turn);
+                config.FrontRight.setPower(speed * turn);
                 config.BackLeft.setPower(speed * turn);
-                config.BackRight.setPower(speed * turn * -1);
+                config.BackRight.setPower(speed * turn);
             }
         }
         else {
