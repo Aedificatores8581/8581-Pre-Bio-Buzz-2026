@@ -57,6 +57,8 @@ public class WCDtest extends OpMode {
         }
         else {
             //Regular Drive -forward and back-
+            //Could use direction to substitute the * -1 on the forward and backward drive and moving to turning
+            //config.FrontLeft.setDirection(DcMotor.Direction.REVERSE);
             config.FrontLeft.setPower(speed);
             config.FrontRight.setPower(speed * -1);
             config.BackLeft.setPower(speed);
