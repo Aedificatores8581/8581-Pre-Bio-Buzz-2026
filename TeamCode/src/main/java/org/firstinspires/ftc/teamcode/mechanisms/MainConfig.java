@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.mechanisms;
 
+import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -12,6 +13,8 @@ public class MainConfig {
     //public DcMotor MiddleLeft;
     public DcMotor BackLeft;
     public DcMotor BackRight;
+
+    public GoBildaPinpointDriver odo;
     //public DcMotor MiddleRight;
 
     public void init(HardwareMap hwMap) { //init methode that adds a hwMap
@@ -31,6 +34,8 @@ public class MainConfig {
    // MiddleRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     BackRight = hwMap.get(DcMotor.class, "BackRight");
     BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+    odo = hwMap.get(GoBildaPinpointDriver.class,  "Odom Computer");
     }
 
   /*  public boolean distanceSensorTest(){
