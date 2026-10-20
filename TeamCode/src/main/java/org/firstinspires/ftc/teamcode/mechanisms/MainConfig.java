@@ -35,7 +35,7 @@ public class MainConfig {
     BackRight = hwMap.get(DcMotor.class, "BackRight");
     BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-    odo = hwMap.get(GoBildaPinpointDriver.class,  "Odom Computer");
+    odo = hwMap.get(GoBildaPinpointDriver.class,  "OdomComputer");
     }
 
   /*  public boolean distanceSensorTest(){
