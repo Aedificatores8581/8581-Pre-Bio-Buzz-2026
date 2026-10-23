@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import org.firstinspires.ftc.teamcode.mechanisms.FlyWheelConfig;
+import org.firstinspires.ftc.teamcode.mechanisms.PIDFValues;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
@@ -17,35 +19,40 @@ public class FlyWheelButton extends LinearOpMode {
     public PIDFCoefficients pidfCoefficients_test = new PIDFCoefficients();
 
 
+
     @Override
     public void runOpMode() {
-        pidfCoefficients_test.p = 100.0;
-        pidfCoefficients_test.f = 25.0;
-        pidfCoefficients_test.i = 0.1;
-        pidfCoefficients_test.d = 12.0;
+
         fConfig.init(hardwareMap);
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
-        fConfig.FlyWheel.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,pidfCoefficients_test);
         waitForStart();
 
         while (opModeIsActive()) {
+            //Should be read from @Config PIDFValues class and able to be edited likewise
+            pidfCoefficients_test.p = PIDFValues.p;//100.0;
+            pidfCoefficients_test.f = PIDFValues.f;  //25.0;
+            pidfCoefficients_test.i = PIDFValues.i;  //0.1;
+            pidfCoefficients_test.d = PIDFValues.d; //12.0;
+            //FlyWheel pidf declaration
+            fConfig.FlyWheel.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,pidfCoefficients_test);
 
-            if (gamepad1.a && button) {
+            if (gamepad1.aWasPressed()) {
                 state = "ON";
-                button = false;
                 fConfig.FlyWheel.setVelocity(1300);
-            } else if (gamepad1.a && !button) {
+                //button = false;
+            } else if (gamepad1.bWasPressed()) {
                 state = "OFF";
-                button = true;
                 fConfig.FlyWheel.setVelocity(0);
+                // button = true;
             }
 
-            telemetry.update();
+
             telemetry.addData("MODE: ", fConfig.FlyWheel.getMode());
             telemetry.addData("STATE: ", state);
-            telemetry.addData("VELOCOTY", fConfig.FlyWheel.getVelocity());
+            telemetry.addData("VELOCITY", fConfig.FlyWheel.getVelocity());
             telemetry.addData("P: ", pidfCoefficients_test.p);
+            telemetry.update();
 
         }
     }
