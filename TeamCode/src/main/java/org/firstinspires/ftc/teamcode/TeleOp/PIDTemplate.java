@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.mechanisms.FlyWheelConfig;
 import org.firstinspires.ftc.teamcode.mechanisms.MainConfig;
 
 /*
@@ -88,7 +89,7 @@ public class PIDTemplate extends LinearOpMode {
     // VARIABLES
     // ---------------------------------------------------------------------------------
     // Our hardware, defined in MainConfig. (Same pattern you would use in any OpMode.)
-    private final MainConfig robot = new MainConfig();
+    private final FlyWheelConfig robot = new FlyWheelConfig();
 
     // A stopwatch used to measure dt (time between loops) for the I and D terms.
     private final ElapsedTime timer = new ElapsedTime();
@@ -107,11 +108,11 @@ public class PIDTemplate extends LinearOpMode {
 
         // Step 2: Zero the encoder so the starting position is 0, then switch back to
         // RUN_WITHOUT_ENCODER (the mode MainConfig uses) so the SDK doesn't do its own PID.
-        robot.FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.FlyWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.FlyWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // BRAKE makes the motor resist movement when power is 0, which helps hold position.
-        robot.FrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.FlyWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         telemetry.addLine("Ready. Press START.");
         telemetry.update();
@@ -134,19 +135,19 @@ public class PIDTemplate extends LinearOpMode {
             // Re-zero the encoder on demand. This also clears the PID memory so old
             // error values don't cause a sudden jump.
             if (gamepad1.left_bumper) {
-                robot.FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-                robot.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                robot.FlyWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                robot.FlyWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 resetPID();
             }
 
             // ---- 2. Read where the motor actually is (encoder ticks) ----
-            double position = robot.FrontLeft.getCurrentPosition();
+            double position = robot.FlyWheel.getCurrentPosition();
 
             // ---- 3. Run the PID math to get a motor power ----
             double power = calculatePID(target, position);
 
             // ---- 4. Send the power to the motor (the motor object comes from MainConfig) ----
-            robot.FrontLeft.setPower(power);
+            robot.FlyWheel.setPower(power);
 
             // ---- 5. Show values on the Driver Station so you can tune ----
             telemetry.addData("Target (ticks)", target);
@@ -158,7 +159,7 @@ public class PIDTemplate extends LinearOpMode {
         }
 
         // Always stop the motor when the OpMode ends.
-        robot.FrontLeft.setPower(0);
+        robot.FlyWheel.setPower(0);
     }
 
     /**

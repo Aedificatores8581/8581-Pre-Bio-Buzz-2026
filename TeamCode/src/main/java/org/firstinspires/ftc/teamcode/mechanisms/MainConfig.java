@@ -17,6 +17,8 @@ public class MainConfig {
     public GoBildaPinpointDriver odo;
     //public DcMotor MiddleRight;
 
+    public DcMotor FlyWheel;
+
     public void init(HardwareMap hwMap) { //init methode that adds a hwMap
 
     //This is the declaration of the variables, assigns to the type and its name in the config
@@ -34,6 +36,9 @@ public class MainConfig {
    // MiddleRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     BackRight = hwMap.get(DcMotor.class, "BackRight");
     BackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+    FlyWheel = hwMap.get(DcMotor.class, "FlyWheel");
+    FlyWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     odo = hwMap.get(GoBildaPinpointDriver.class,  "OdomComputer");
     }
