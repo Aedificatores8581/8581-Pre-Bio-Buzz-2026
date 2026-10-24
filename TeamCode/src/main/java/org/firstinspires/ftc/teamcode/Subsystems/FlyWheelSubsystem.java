@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOp.Subsystems;
+package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -6,17 +6,17 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
-import org.firstinspires.ftc.teamcode.mechanisms.PIDFValues;
-
 @Config
 public class FlyWheelSubsystem {
     //Hardware
-     private DcMotorEx flyWheel;
+     public DcMotorEx flyWheel;
 
      public static double p = 100.0;
      public static double f = 25.0;
      public static double i = 0.1;
      public static double d = 12.0;
+
+     public static int targetVelocity = 1300;
      public PIDFCoefficients pidfCoefficients = new PIDFCoefficients();
 
 
@@ -41,6 +41,14 @@ public class FlyWheelSubsystem {
         pidfCoefficients.f = f;
 
         flyWheel.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,pidfCoefficients);
+    }
+
+    public void runToVelocity() {
+        flyWheel.setVelocity(targetVelocity);
+    }
+
+    public void runToZero() {
+        flyWheel.setVelocity(0);
     }
 
     //Add other complex methods for subsystem
