@@ -9,19 +9,19 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class IntakeSubsystem {
 
     public DcMotorEx intake;
-    public static double targetPower = 0.8;
+   // public static double targetPower = 0.8;
 
 
-    public IntakeSubsystem(HardwareMap hwMap) {
+    public void init(HardwareMap hwMap) {
         intake = hwMap.get(DcMotorEx.class, "Intake");
         intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    public void runForward() {
+    public void runForward(double targetPower) {
         intake.setPower(targetPower);
     }
 
-    public void runBackward() {
+    public void runBackward(double targetPower) {
         intake.setPower(targetPower * -1);
     }
 

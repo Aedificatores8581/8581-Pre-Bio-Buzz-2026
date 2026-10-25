@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
-@Config
+@Config //needs public static to be found by FTC Dashboard
 public class FlyWheelSubsystem {
     //Hardware
      public DcMotorEx flyWheel;
