@@ -21,6 +21,10 @@ public class IntakeSubsystem {
         intake.setPower(targetPower);
     }
 
+    /**
+     *
+     * @param targetPower IMPORTANT: This is multiplied by -1 so enter positive
+     */
     public void runBackward(double targetPower) {
         intake.setPower(targetPower * -1);
     }
