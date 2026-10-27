@@ -44,4 +44,11 @@ public class DriveTankSubsystem {
         backLeft.setPower(targetPower);
         backRight.setPower(targetPower);
     }
+
+    public void stopMove() {
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+    }
 }
