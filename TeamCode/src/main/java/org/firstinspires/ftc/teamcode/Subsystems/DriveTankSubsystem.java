@@ -3,7 +3,11 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+//PUSH TO GITHUB
+//And tell Lachlan to merge
 
 @Config
 public class DriveTankSubsystem {
@@ -17,6 +21,7 @@ public class DriveTankSubsystem {
 
         frontLeft = hwMap.get(DcMotorEx.class, "FrontLeft");
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight = hwMap.get(DcMotorEx.class, "FrontRight");
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft = hwMap.get(DcMotorEx.class, "BackLeft");
