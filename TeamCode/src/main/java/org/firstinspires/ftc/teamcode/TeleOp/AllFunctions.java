@@ -1,11 +1,15 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Subsystems.DriveTankSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 
+@TeleOp(name="AllFunctions", group="MAIN")
 public class AllFunctions extends LinearOpMode {
 
     @Override
@@ -16,6 +20,9 @@ public class AllFunctions extends LinearOpMode {
         IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
         DriveTankSubsystem driveTankSubsystem = new DriveTankSubsystem();
 
+        FtcDashboard dashboard = FtcDashboard.getInstance();
+        telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
+
         waitForStart();
 
         //init
@@ -23,8 +30,13 @@ public class AllFunctions extends LinearOpMode {
         intakeSubsystem.init(hardwareMap);
         driveTankSubsystem.init(hardwareMap);
 
+
+
         while (opModeIsActive())
         {
+            //set PIDF
+            flyWheelSubsystem.setPIDF();
+
             // DRIVE CODE
 
             // Mecanum drive is controlled with three axes: drive (front-and-back),
@@ -84,6 +96,41 @@ public class AllFunctions extends LinearOpMode {
             driveTankSubsystem.frontRight.setPower(speeds[1]);
             driveTankSubsystem.backLeft.setPower(speeds[2]);
             driveTankSubsystem.backRight.setPower(speeds[3]);
+
+            //INTAKE CHECK
+            if(gamepad1.dpadUpWasPressed())
+            {
+                intakeSubsystem.runForward(0.8);
+            }
+            if(gamepad1.dpadDownWasPressed())
+            {
+                intakeSubsystem.runBackward(0.8);
+            }
+            if(gamepad1.dpadLeftWasPressed())
+            {
+                intakeSubsystem.stop();
+            }
+
+            //FLYWHEEL
+
+            if(gamepad1.aWasPressed())
+            {
+                flyWheelSubsystem.runToVelocity();
+            }
+
+            if(gamepad1.bWasPressed())
+            {
+                flyWheelSubsystem.runToZero();
+            }
+
+
+            //TELEMETRY
+
+            telemetry.addData("FlyWheel Velocity: ", flyWheelSubsystem.flyWheel.getVelocity());
+            telemetry.addData("Intake Power: ", intakeSubsystem.intake.getPower());
+            telemetry.update();
+
+
         }
 
     }

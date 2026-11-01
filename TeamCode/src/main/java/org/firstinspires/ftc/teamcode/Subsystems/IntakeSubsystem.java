@@ -13,7 +13,7 @@ public class IntakeSubsystem {
 
 
     public void init(HardwareMap hwMap) {
-        intake = hwMap.get(DcMotorEx.class, "Intake");
+        intake = hwMap.get(DcMotorEx.class, "IntakeRoller");
         intake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
@@ -27,6 +27,10 @@ public class IntakeSubsystem {
      */
     public void runBackward(double targetPower) {
         intake.setPower(targetPower * -1);
+    }
+
+    public void stop() {
+        intake.setPower(0);
     }
 
 

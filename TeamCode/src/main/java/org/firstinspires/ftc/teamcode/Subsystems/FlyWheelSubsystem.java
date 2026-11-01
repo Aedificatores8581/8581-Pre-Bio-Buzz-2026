@@ -37,11 +37,12 @@ public class FlyWheelSubsystem {
 
         flyWheel = hwMap.get(DcMotorEx.class, "FlyWheel");
         flyWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        flyWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         flyWheel.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,pidfCoefficients);
     }
 
-    public void SetPIDF() {
+    public void setPIDF() {
         pidfCoefficients.p = p;
         pidfCoefficients.i = i;
         pidfCoefficients.d = d;
