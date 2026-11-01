@@ -21,8 +21,15 @@ public class FlyWheelSubsystem {
 
 
 
-    //Config
-    public FlyWheelSubsystem(HardwareMap hwMap) {
+    /*
+    *
+    * public FlyWheelSubsystem(HardwareMap hwMap) {
+
+    }
+    * */
+
+
+    public void init(HardwareMap hwMap) {
         pidfCoefficients.p = 0;
         pidfCoefficients.i = 0;
         pidfCoefficients.d = 0;
