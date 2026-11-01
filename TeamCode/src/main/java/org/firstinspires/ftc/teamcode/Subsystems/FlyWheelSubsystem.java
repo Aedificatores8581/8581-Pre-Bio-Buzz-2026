@@ -11,10 +11,10 @@ public class FlyWheelSubsystem {
     //Hardware
      public DcMotorEx flyWheel;
 
-     public static double p = 100.0;
-     public static double f = 25.0;
-     public static double i = 0.1;
-     public static double d = 12.0;
+     public static double p = 200.0;
+     public static double f = 13.2;
+     public static double i = 0.0;
+     public static double d = 10.0;
 
      public static int targetVelocity = 1300;
      public PIDFCoefficients pidfCoefficients = new PIDFCoefficients();

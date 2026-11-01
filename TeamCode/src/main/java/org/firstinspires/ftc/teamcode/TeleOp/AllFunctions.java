@@ -8,9 +8,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveTankSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.TransferSubsystem;
 
 @TeleOp(name="AllFunctions", group="MAIN")
 public class AllFunctions extends LinearOpMode {
+
+    //decrease turning speed
 
     @Override
     public void runOpMode()  {
@@ -19,9 +22,11 @@ public class AllFunctions extends LinearOpMode {
         FlyWheelSubsystem flyWheelSubsystem = new FlyWheelSubsystem();
         IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
         DriveTankSubsystem driveTankSubsystem = new DriveTankSubsystem();
+        TransferSubsystem transferSubsystem = new TransferSubsystem();
 
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
+
 
         waitForStart();
 
@@ -29,6 +34,7 @@ public class AllFunctions extends LinearOpMode {
         flyWheelSubsystem.init(hardwareMap);
         intakeSubsystem.init(hardwareMap);
         driveTankSubsystem.init(hardwareMap);
+        transferSubsystem.init(hardwareMap);
 
 
 
@@ -42,7 +48,7 @@ public class AllFunctions extends LinearOpMode {
             // Mecanum drive is controlled with three axes: drive (front-and-back),
             // strafe (left-and-right), and twist (rotating the whole chassis).
             double drive = gamepad1.left_stick_y;
-            double strafe = gamepad1.left_stick_x * -1; //FLIPPING
+            double strafe = gamepad1.left_stick_x * -0.5; //FLIPPING
             double twist = gamepad1.right_stick_x;
 
             /*
@@ -122,6 +128,19 @@ public class AllFunctions extends LinearOpMode {
             {
                 flyWheelSubsystem.runToZero();
             }
+
+            //TRANSFER
+
+            if(gamepad1.right_bumper)
+            {
+                transferSubsystem.runIn(0.5);
+            }
+
+            if(gamepad1.left_bumper)
+            {
+                transferSubsystem.stop();
+            }
+
 
 
             //TELEMETRY
