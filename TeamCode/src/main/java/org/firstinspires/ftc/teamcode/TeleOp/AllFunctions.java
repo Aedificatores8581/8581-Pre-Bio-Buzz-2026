@@ -13,8 +13,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.TransferSubsystem;
 @TeleOp(name="AllFunctions", group="MAIN")
 public class AllFunctions extends LinearOpMode {
 
-    //decrease turning speed
-
     @Override
     public void runOpMode()  {
 
@@ -24,17 +22,20 @@ public class AllFunctions extends LinearOpMode {
         DriveTankSubsystem driveTankSubsystem = new DriveTankSubsystem();
         TransferSubsystem transferSubsystem = new TransferSubsystem();
 
+
         FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
-
-
-        waitForStart();
 
         //init
         flyWheelSubsystem.init(hardwareMap);
         intakeSubsystem.init(hardwareMap);
         driveTankSubsystem.init(hardwareMap);
         transferSubsystem.init(hardwareMap);
+
+
+        waitForStart();
+
+
 
 
 
@@ -48,8 +49,8 @@ public class AllFunctions extends LinearOpMode {
             // Mecanum drive is controlled with three axes: drive (front-and-back),
             // strafe (left-and-right), and twist (rotating the whole chassis).
             double drive = gamepad1.left_stick_y;
-            double strafe = gamepad1.left_stick_x * -0.5; //FLIPPING
-            double twist = gamepad1.right_stick_x;
+            double strafe = gamepad1.left_stick_x;
+            double twist = gamepad1.right_stick_x  * -0.5; //FLIPPING
 
             /*
              * If we had a gyro and wanted to do field-oriented control, here
@@ -135,8 +136,10 @@ public class AllFunctions extends LinearOpMode {
             {
                 transferSubsystem.runIn(0.5);
             }
-
-            if(gamepad1.left_bumper)
+            else if(gamepad1.left_bumper) {
+                transferSubsystem.runOut(0.5);
+            }
+            else
             {
                 transferSubsystem.stop();
             }

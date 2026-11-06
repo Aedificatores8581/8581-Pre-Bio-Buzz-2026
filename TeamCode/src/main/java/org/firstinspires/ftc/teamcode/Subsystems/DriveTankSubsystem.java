@@ -52,6 +52,18 @@ public class DriveTankSubsystem {
         backRight.setPower(targetPower);
     }
 
+    //THIS NEEDS CHECKED
+    /**
+     *
+     * @param targetPower IMPORTANT: negative values go left and positive go right
+     */
+    public  void strafe(double targetPower) {
+        frontLeft.setPower(-1 * targetPower);
+        frontRight.setPower(targetPower);
+        backLeft.setPower(targetPower);
+        backRight.setPower(-1 * targetPower);
+    }
+
     public void stopMove() {
         frontLeft.setPower(0);
         frontRight.setPower(0);

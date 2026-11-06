@@ -15,11 +15,20 @@ public class TransferSubsystem  {
    public void init(HardwareMap hwMap) {
        transfer = hwMap.get(DcMotorEx.class, "TransferMotor");
        transfer.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-       transfer.setDirection(DcMotorSimple.Direction.REVERSE);
+       //transfer.setDirection(DcMotorSimple.Direction.REVERSE);
    }
 
    public void runIn(double targetPower) {
        transfer.setPower(targetPower);
+   }
+
+    /**
+     *
+     * @param targetPower enter a positive value
+     */
+   public void runOut(double targetPower)
+   {
+       transfer.setPower(-1 * targetPower);
    }
    public void stop() {
        transfer.setPower(0);
