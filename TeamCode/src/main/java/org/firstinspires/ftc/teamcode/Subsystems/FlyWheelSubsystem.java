@@ -16,7 +16,7 @@ public class FlyWheelSubsystem {
      public static double i = 0.0;
      public static double d = 10.0;
 
-     public static int targetVelocity = 1300;
+     public static int targetVelocity = 1400;
      public PIDFCoefficients pidfCoefficients = new PIDFCoefficients();
 
 

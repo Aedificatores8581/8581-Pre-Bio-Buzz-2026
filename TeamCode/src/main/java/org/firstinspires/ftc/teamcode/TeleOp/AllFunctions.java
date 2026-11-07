@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -10,8 +11,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.TransferSubsystem;
 
+@Config
 @TeleOp(name="AllFunctions", group="MAIN")
 public class AllFunctions extends LinearOpMode {
+
+    public static double turningSpeed = 0.5;
 
     @Override
     public void runOpMode()  {
@@ -33,6 +37,8 @@ public class AllFunctions extends LinearOpMode {
         transferSubsystem.init(hardwareMap);
 
 
+
+
         waitForStart();
 
 
@@ -50,7 +56,7 @@ public class AllFunctions extends LinearOpMode {
             // strafe (left-and-right), and twist (rotating the whole chassis).
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
-            double twist = gamepad1.right_stick_x  * -0.5; //FLIPPING
+            double twist = gamepad1.right_stick_x  * turningSpeed; //FLIPPING
 
             /*
              * If we had a gyro and wanted to do field-oriented control, here
