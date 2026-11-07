@@ -10,7 +10,7 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
-@TeleOp(name = "FlyWheelButton")
+
 public class FlyWheelButton extends LinearOpMode {
 
     FlyWheelConfig fConfig = new FlyWheelConfig();

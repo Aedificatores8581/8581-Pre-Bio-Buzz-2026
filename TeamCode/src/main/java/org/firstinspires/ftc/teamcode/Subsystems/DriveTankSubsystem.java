@@ -21,15 +21,16 @@ public class DriveTankSubsystem {
 
         frontLeft = hwMap.get(DcMotorEx.class, "FrontLeft");
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+      //  frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight = hwMap.get(DcMotorEx.class, "FrontRight");
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+       // frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft = hwMap.get(DcMotorEx.class, "BackLeft");
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+      //  backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight = hwMap.get(DcMotorEx.class, "BackRight");
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
 
@@ -55,7 +56,7 @@ public class DriveTankSubsystem {
     //THIS NEEDS CHECKED
     /**
      *
-     * @param targetPower IMPORTANT: negative values go left and positive go right
+     * @param targetPower IMPORTANT: negative values go right and positive go left
      */
     public  void strafe(double targetPower) {
         frontLeft.setPower(-1 * targetPower);

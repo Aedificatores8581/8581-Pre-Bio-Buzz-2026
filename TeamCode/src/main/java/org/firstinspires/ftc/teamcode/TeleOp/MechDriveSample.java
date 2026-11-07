@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  * @author Brandon Gong
  */
-@TeleOp(name="Mecanum Drive Example", group="Iterative Opmode")
+
 public class MechDriveSample extends OpMode {
 
     /*

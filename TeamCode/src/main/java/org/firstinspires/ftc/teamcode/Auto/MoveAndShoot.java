@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Auto;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -8,6 +9,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.DriveTankSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.FlyWheelSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.TransferSubsystem;
 
+@Config
 @Autonomous(name = "Move And Shoot", group = "Final")
 public class MoveAndShoot extends LinearOpMode {
 
@@ -19,12 +21,19 @@ public class MoveAndShoot extends LinearOpMode {
     double elapsed;
     double timeOccuring = 0.0;
 
+    //MUST BE MORE THAN 6 AND THAN THE DIF IS ACTUAL VALUE
+    public static double moveTime = 11.0;
+
+
+
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() {
 
         flyWheelSubsystem.init(hardwareMap);
         driveTankSubsystem.init(hardwareMap);
         transferSubsystem.init(hardwareMap);
+
+
 
 
         //Timer start selection
@@ -63,19 +72,19 @@ public class MoveAndShoot extends LinearOpMode {
                 transferSubsystem.stop();
             }
 
-            else if (elapsed >= t + 6 && elapsed < t + 7.5) {
+            else if (elapsed >= t + 6 && elapsed < t + moveTime) {
                 driveTankSubsystem.moveForward(0.5);
             }
 
-            else if (elapsed >= t + 7.5 && elapsed < t + 10) {
-                driveTankSubsystem.strafe(-0.5);
-            }
-
-            else if (elapsed >= t + 10 && elapsed < t + 10.25) {
+            else if (elapsed >= t + moveTime && elapsed < t + moveTime + 4) {
                 driveTankSubsystem.strafe(0.5);
             }
 
-            else if (elapsed >= t + 10.25) {
+            else if (elapsed >= t + (moveTime + 4) && elapsed < t + (moveTime + 4.25)) {
+                driveTankSubsystem.strafe(-0.5);
+            }
+
+            else if (elapsed >= t + (moveTime + 4.25)) {
                 driveTankSubsystem.stopMove();
             }
 

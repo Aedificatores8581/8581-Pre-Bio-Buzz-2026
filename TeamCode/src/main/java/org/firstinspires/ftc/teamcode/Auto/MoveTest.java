@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Subsystems.DriveTankSubsystem;
 
-@Autonomous
+
 public class MoveTest extends LinearOpMode {
 
     //ADD ElapsedTime

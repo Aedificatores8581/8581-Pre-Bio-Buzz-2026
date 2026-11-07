@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Subsystems.DriveTankSubsystem;
 
-@TeleOp(name="MainDrive", group="Drives")
+
 public class MainDrive extends LinearOpMode {
 
 

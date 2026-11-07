@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.mechanisms.FlyWheelConfig;
 import org.firstinspires.ftc.teamcode.mechanisms.MainConfig;
 
-@TeleOp(name = "HardwareTest", group = "TESTS")
+
 public class HardwareTest extends OpMode {
 
     public MainConfig config = new MainConfig();
