@@ -37,6 +37,9 @@ public class ShootStill extends LinearOpMode {
             {
                 flyWheelSubsystem.runToVelocity();
             }
+            else {
+                flyWheelSubsystem.runToZero();
+            }
         }
     }
 }

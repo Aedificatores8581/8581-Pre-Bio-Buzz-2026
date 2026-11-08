@@ -54,7 +54,7 @@ public class AllFunctions extends LinearOpMode {
 
             // Mecanum drive is controlled with three axes: drive (front-and-back),
             // strafe (left-and-right), and twist (rotating the whole chassis).
-            double drive = gamepad1.left_stick_y;
+            double drive = gamepad1.left_stick_y * -1;
             double strafe = gamepad1.left_stick_x;
             double twist = gamepad1.right_stick_x  * turningSpeed; //FLIPPING
 
